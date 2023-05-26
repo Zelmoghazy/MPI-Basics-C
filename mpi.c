@@ -103,6 +103,8 @@ int main(void){
     double local_right_endpt;
     double total_integration;
     double local_integration;
+    double start_time;
+    double end_time;
 
     MPI_Init(NULL,NULL);
     MPI_Comm_size(MPI_COMM_WORLD, &num_procs);
@@ -114,7 +116,7 @@ int main(void){
         printf("Enter the ending point of integration :\n");
         scanf("%lf",&right_endpt);
     }
-
+    start_time = MPI_Wtime();
     if(rank == 0){
         for (int rec = 1; rec < num_procs; rec++){
             MPI_Send(&left_endpt,1,MPI_DOUBLE,rec,1,MPI_COMM_WORLD);
@@ -144,6 +146,8 @@ int main(void){
         }
         printf("with n = %d trapezoids\n",n);
         printf("Estimation from %f to %f = %.5lf\n",left_endpt,right_endpt,total_integration);
+        end_time = MPI_Wtime();
+        printf("Time taken = %lf\n",end_time-start_time);
     }
     MPI_Finalize();
     return 0;
