@@ -51,9 +51,9 @@ int MPI_Recv(   void *buf,             // Generic pointer to place in memory whe
 
 ```c
   typedef struct MPI_Status {
-        int MPI_SOURCE; : rank of the process where the information came from
-        int MPI_TAG;    : tag value sent by the sender
-        int MPI_ERROR;  : indication that anything gone wrong
+        int MPI_SOURCE; //: rank of the process where the information came from
+        int MPI_TAG;    //: tag value sent by the sender
+        int MPI_ERROR;  //: indication that anything gone wrong
     };
 ```
 - Example use of `MPI_Status`    
@@ -77,5 +77,5 @@ int MPI_Recv(   void *buf,             // Generic pointer to place in memory whe
 ## Compilation
 - Compiled using WSL2 `sudo apt install libopenmpi-dev` 
 - run using `make n=4`
-    - type required number of processes
+    - type required number of processes (4 processes chosen here)
     - Makefile is included
