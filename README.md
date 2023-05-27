@@ -47,23 +47,29 @@
 
 (Reciever can get a message without knowing the amount of data, the sender MPI_ANY_SOURCE or the tag MPI_ANY_TAG)
 
-- typedef struct MPI_Status {
+```c
+  typedef struct MPI_Status {
         int MPI_SOURCE; : rank of the process where the information came from
         int MPI_TAG;    : tag value sent by the sender
         int MPI_ERROR;  : indication that anything gone wrong
     };
-
+```
+- Example use of `MPI_Status`    
+```c
     MPI_Status status;
     MPI_Recv(...,&status);
     tag = status.MPI_TAG;
     source = status.MPI_SOURCE
     error = status.MPI_ERROR;
+```
 
-- MPI_WTIME() : returns the current time with a double float.
+- `MPI_WTIME()` : returns the current time with a double float.
     -> to time a program segment :
+    ```c
         start_time = MPI_Wtime();
         end_time = MPI_Wtime();
         Time spent = end_time - start_time;
+    ```    
 
 ## Compilation
 - Compiled using WSL2 `sudo apt install libopenmpi-dev` 
