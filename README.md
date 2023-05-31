@@ -37,7 +37,7 @@
                 MPI_Datatype datatype, // constants defined like MPI_CHAR as an abstraction to actual data type that allows comm. bet. different machines.
                 int dest,              // rank of process which we want to transmit the buffer to.
                 int tag,               // Generic integer used to distinguish one type of a message from another to same destination.
-                MPI_Comm comm )        // Communicator -> MPI_COMM_WORLD.
+                MPI_Comm comm );       // Communicator -> MPI_COMM_WORLD.
 
 int MPI_Recv(   void *buf,             // Generic pointer to place in memory where you want to recieve the incoming data (out argument).
                 int count,             // number of primitive element in this buffer determined by datatype.
@@ -45,7 +45,7 @@ int MPI_Recv(   void *buf,             // Generic pointer to place in memory whe
                 int source,            // rank of process which we want to recieve from.
                 int tag,               // select kind of message I want to recieve from source.
                 MPI_Comm comm          // Communicator -> MPI_COMM_WORLD.
-                MPI_Status *status )   // Info about success or failure of communication from another process.
+                MPI_Status *status );  // Info about success or failure of communication from another process.
 ```
 (Reciever can get a message without knowing the amount of data, the sender `MPI_ANY_SOURCE` or the tag `MPI_ANY_TAG`)
 
@@ -66,7 +66,7 @@ int MPI_Recv(   void *buf,             // Generic pointer to place in memory whe
 ```
 
 - `MPI_WTIME()` : returns the current time with a double float.
-    - -> to time a program segment :
+    - to time a program segment :
     
     ```c
         start_time = MPI_Wtime();
